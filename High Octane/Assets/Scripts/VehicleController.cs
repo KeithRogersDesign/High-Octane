@@ -4,49 +4,50 @@ using UnityEngine;
 
 public class VehicleController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	public float movementSpeed = 100f;
+	public float rotateSpeed = 5;
 
+	public KeyCode forwardsKey = KeyCode.W;
+	public KeyCode backwardsKey = KeyCode.S;
+	public KeyCode turnLeftKey = KeyCode.A;
+	public KeyCode turnRightKey = KeyCode.D;
+
+	public int health = 100;
+
+	public void TakeDamage(int damageToTake) {
+		health = health - damageToTake;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.W)) {
-			transform.position = transform.position + new Vector3 (0, 0, 4f);
+
+		if (health <= 0) {
+			//this exists the function and does not run anything after that.
+			return;
+
+		}	
+
+		if (Input.GetKey (forwardsKey)) {
+			transform.position += transform.forward *
+				movementSpeed;			
 		}
 
-		if (Input.GetKey (KeyCode.S)) {
-			transform.position = transform.position + new Vector3 (0, 0, -0.5f);
-
+		if (Input.GetKey (backwardsKey)) {
+			transform.position += transform.forward *
+				-movementSpeed;	
 		}
 
-		if (Input.GetKey (KeyCode.A)) {
-			transform.position = transform.position + new Vector3 (-0.5f, 0, 0);
-
-		}
-
-		if (Input.GetKey (KeyCode.D)) {
-			transform.position = transform.position + new Vector3 (0.5f, 0, 0);
-		}
-
-		if (Input.GetKey (KeyCode.UpArrow)) {
-			transform.position = transform.position + new Vector3 (0, 0, 4f);
-		}
-
-		if (Input.GetKey (KeyCode.DownArrow)) {
-			transform.position = transform.position + new Vector3 (0, 0, -0.5f);
+		if (Input.GetKey (turnRightKey)) {
+			transform.position += transform.right *
+				movementSpeed;	
 
 		}
 
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.position = transform.position + new Vector3 (-0.5f, 0, 0);
+		if (Input.GetKey (turnLeftKey)) {
+			transform.position += transform.right *
+				-movementSpeed;	
 
-		}
-
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.position = transform.position + new Vector3 (0.5f, 0, 0);
 		}
 
 	}
-
 }

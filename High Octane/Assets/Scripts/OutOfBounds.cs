@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutOfBounds : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+public class OutOfBounds : MonoBehaviour 
+{
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public GameObject playerExplosion;
+
+	void OnTriggerExit(Collider other)
+	{  
+
+	Instantiate (playerExplosion, transform.position, transform.rotation);
+    if (other.tag == "Player")
+	{
+			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
 	}
+		
+		Destroy (other.gameObject);
+
+
+  }
+
 }
