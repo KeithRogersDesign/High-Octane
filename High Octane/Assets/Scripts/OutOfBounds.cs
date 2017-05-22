@@ -7,16 +7,17 @@ public class OutOfBounds : MonoBehaviour
 	
 	public GameObject playerExplosion;
 
-	void OnTriggerExit(Collider other)
+	void OnTriggerEnter(Collider other)
 	{  
 
-	Instantiate (playerExplosion, transform.position, transform.rotation);
-    if (other.tag == "Player")
+	//Instantiate (playerExplosion, transform.position, transform.rotation);
+		if (other.gameObject.tag == "Player")
 	{
-			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
+			//Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
+			Destroy (other.gameObject);
 	}
 		
-		Destroy (other.gameObject);
+
 
 
   }

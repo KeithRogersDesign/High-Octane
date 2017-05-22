@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class VehicleController : MonoBehaviour {
 
-	public float movementSpeed = 100f;
-	public float rotateSpeed = 5;
+	public float curHP=100;
+	public float maxHP=100;
+	public float maxBAR=100;
+	public float HealthBarLength;
 
 	public KeyCode forwardsKey = KeyCode.W;
 	public KeyCode backwardsKey = KeyCode.S;
@@ -28,26 +30,65 @@ public class VehicleController : MonoBehaviour {
 		}	
 
 		if (Input.GetKey (forwardsKey)) {
-			transform.position += transform.forward *
-				movementSpeed;			
+			gameObject.GetComponent<Rigidbody> ().AddForce
+			(transform.forward * 50);
 		}
 
 		if (Input.GetKey (backwardsKey)) {
-			transform.position += transform.forward *
-				-movementSpeed;	
+			gameObject.GetComponent<Rigidbody> ().AddForce
+			(transform.forward * -10);
 		}
+			
 
 		if (Input.GetKey (turnRightKey)) {
-			transform.position += transform.right *
-				movementSpeed;	
-
+			gameObject.GetComponent<Rigidbody> ().AddForce
+			(transform.right * 10);
 		}
+			
 
 		if (Input.GetKey (turnLeftKey)) {
-			transform.position += transform.right *
-				-movementSpeed;	
-
+			gameObject.GetComponent<Rigidbody> ().AddForce
+			(transform.right * -10);
 		}
 
 	}
+
+		void OnGUI()
+		{
+			//This creates the health bar at the coordinates 10,10
+			GUI.Box(new Rect(10,10,HealthBarLength,25), "");
+			// This determines lentgh of the health bar
+			HealthBarLength=curHP*maxBAR/maxHP;
+		}
+
+		void ChangeHp(float Change)
+		{
+			curHP+=Change;
+			if (curHP > 100) 
+			{
+				curHP = 100;
+			}	
+			if (curHP <= 0) 
+			{
+				// Die
+				Debug.Log("Your machine has been trashed!");
+			}	
+		}
+
+		void OnTriggerEnter(Collider other)
+		{
+			switch (other.gameObject.tag) 
+			{ 
+			case "Energy pad":
+				ChangeHp(25);
+				break;
+			}
+			Destroy (other.gameObject);
+
+
+		}
+
+
 }
+
+
