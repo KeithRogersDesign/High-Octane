@@ -31,12 +31,12 @@ public class VehicleController : MonoBehaviour {
 
 		if (Input.GetKey (forwardsKey)) {
 			gameObject.GetComponent<Rigidbody> ().AddForce
-			(transform.forward * 50);
+			(transform.forward * 40);
 		}
 
 		if (Input.GetKey (backwardsKey)) {
 			gameObject.GetComponent<Rigidbody> ().AddForce
-			(transform.forward * -10);
+			(transform.forward * -80);
 		}
 			
 
