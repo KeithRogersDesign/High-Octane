@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VehicleController : MonoBehaviour {
 
+	public int currentCheckpoint = 0;
+
 	public float curHP=100;
 	public float maxHP=100;
 	public float maxBAR=100;
@@ -52,6 +54,15 @@ public class VehicleController : MonoBehaviour {
 		}
 
 	}
+		public void HitCheckpoint(int checkpointNumber){
+			if (checkpointNumber == currentCheckpoint + 1){
+				currentCheckpoint = checkpointNumber;
+			} else {
+				Debug.Log ("Wrong checkpoint for" + transform.name);
+			}
+       
+		}
+		
 
 		void OnGUI()
 		{
