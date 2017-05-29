@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class HealthRegen : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public float speedBoost = 10000;
+
+	void OnTriggerEnter(Collider other){
+		if (other.tag == "Player") {
+			other.GetComponent<Rigidbody> ().AddForce (other.transform.forward * speedBoost, ForceMode.Impulse);
+		}
 	}
 }
