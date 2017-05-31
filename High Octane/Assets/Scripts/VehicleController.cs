@@ -19,6 +19,7 @@ public class VehicleController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		    
 
 		if (Input.GetKey (forwardsKey)) {
 			gameObject.GetComponent<Rigidbody> ().AddForce
@@ -54,6 +55,7 @@ public class VehicleController : MonoBehaviour {
 
 
 	void OnGUI()
+
 	{
 		//This creates the health bar at the coordinates 10,10
 		GUI.Box(new Rect(10,10,HealthBarLength,25), "");
@@ -85,9 +87,12 @@ public class VehicleController : MonoBehaviour {
 		}
 		Destroy (other.gameObject);
 
+		{
 
 	}
 
+
+  }
 
 }
 
