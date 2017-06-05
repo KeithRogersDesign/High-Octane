@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	public float playerPositionCounter = 0;
 	public GameObject player;
+	public GameObject player2;
 
 	int raceTrackCounter = 0;
 

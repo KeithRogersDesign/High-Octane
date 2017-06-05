@@ -10,7 +10,9 @@ public class Checkpoints : MonoBehaviour {
 		if (other.tag == "Player") {
 			other.GetComponent<VehicleController> ().HitCheckpoint (checkPointNumber);
 		}
+		else if (other.tag == "Player2") {
+			other.GetComponent<VehicleController2> ().HitCheckpoint (checkPointNumber);
+		}
 	}
-}
-
+ }
 
