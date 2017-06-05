@@ -1,53 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public List<GameObject> raceTracks = new List<GameObject> ();
+	private bool GoToNextLevel = false;
+	private bool RestartLevel = false;
 
+	void Update ()
+	{
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			Restart();
+		}
 
-	public float depthOfRaceTrack = 2;
+		if (GoToNextLevel == true)
+		{
+			if (SceneManager.GetActiveScene ().buildIndex - 1 == SceneManager.sceneCountInBuildSettings)
+				SceneManager.LoadScene (0);
+			else
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+		}
 
-	public float playerPositionCounter = 0;
-	public GameObject player;
-	public GameObject player2;
-
-	int raceTrackCounter = 0;
-
-	// Use this for initialization
-	void Start () {
-		for (int i = 0; i < 40; i++) {
-			BuildTrack ();
+		if (RestartLevel == true)
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
 
-	void Update(){
-		if (player.transform.position.z > playerPositionCounter) {
-			playerPositionCounter += depthOfRaceTrack;
-
-			BuildTrack ();
-		}
-
+	public void Restart()
+	{
+		StartCoroutine (RestartWaitTimer());
 	}
 
-	private void BuildTrack(){
 
-		GameObject raceTrackToPlace = null;
-		int randomPiece = Random.Range (0, 3);
+	public void NextLevel()
+	{
+		StartCoroutine (NextLevelWaitTimer());
+	}
 
-		if (randomPiece == 0) {
-		} else if (randomPiece == 1) {
 
-		} else if (randomPiece == 2) {
+	IEnumerator NextLevelWaitTimer()
+	{
+		yield return new WaitForSeconds (1.5f);
+		GoToNextLevel = true;
+	}
 
-		}
-
-		Instantiate (raceTracks[Random.Range(0, raceTracks.Count)],
-			Vector3.forward * raceTrackCounter * depthOfRaceTrack,
-			Quaternion.identity);
-		raceTrackCounter++;
-
+	IEnumerator RestartWaitTimer()
+	{
+		yield return new WaitForSeconds (0);
+		RestartLevel = true;
 	}
 
 }

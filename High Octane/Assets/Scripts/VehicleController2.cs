@@ -5,6 +5,7 @@ using UnityEngine;
 public class VehicleController2 : MonoBehaviour {
 
 	public int currentCheckpoint = 0;
+	public int currentLap = 0;
 
 	public float curHP=100;
 	public float maxHP=100;
@@ -23,7 +24,7 @@ public class VehicleController2 : MonoBehaviour {
 
 		if (Input.GetKey (forwardsKey)) {
 			gameObject.GetComponent<Rigidbody> ().AddForce
-			(transform.forward * 40);
+			(transform.forward * 20);
 		}
 
 		if (Input.GetKey (backwardsKey)) {
@@ -44,11 +45,22 @@ public class VehicleController2 : MonoBehaviour {
 		}
 
 	}
+	//Lets you know if you've hit checkpoints out of order
 	public void HitCheckpoint(int checkpointNumber){
 		if (checkpointNumber == currentCheckpoint + 1){
 			currentCheckpoint = checkpointNumber;
 		} else {
 			Debug.Log ("Wrong checkpoint for" + transform.name);
+		}
+
+	}
+
+	//Lets you know if you've hit checkpoints out of order
+	public void HitLap(int lapNumber){
+		if (lapNumber == currentLap + 1){
+			currentLap = lapNumber;
+		} else {
+			Debug.Log ("Wrong lap" + transform.name);
 		}
 
 	}
