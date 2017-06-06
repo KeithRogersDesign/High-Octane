@@ -35,13 +35,13 @@ public class VehicleController2 : MonoBehaviour {
 
 		if (Input.GetKey (turnRightKey)) {
 			gameObject.GetComponent<Rigidbody> ().AddForce
-			(transform.right * 10);
+			(transform.right * 15);
 		}
 
 
 		if (Input.GetKey (turnLeftKey)) {
 			gameObject.GetComponent<Rigidbody> ().AddForce
-			(transform.right * -10);
+			(transform.right * -15);
 		}
 
 	}
