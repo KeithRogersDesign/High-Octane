@@ -9,11 +9,9 @@ public class OutOfBounds : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{  
-
-	//Instantiate (playerExplosion, transform.position, transform.rotation);
+		// Grabs the player object
 		if (other.gameObject.tag == "Player")
 	{
-			//Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
 	}
 		

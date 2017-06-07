@@ -21,7 +21,7 @@ public class Teleport : MonoBehaviour {
 			other.transform.rotation = nodeRotation;
 		}
 	}
-
+	// Draws a visual line to denote where the player will teleport	
 	void OnDrawGizmos() {
 		Gizmos.color = Color.blue;
 		Gizmos.DrawLine (transform.position, teleportNode.transform.position);

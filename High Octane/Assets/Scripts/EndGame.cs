@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class EndGame : MonoBehaviour {
 
 	void OnTriggerEnter (Collider ChangeScene)
-	{
+	{   
+		// Changes the scene when player hits trigger
 		if (ChangeScene.gameObject.CompareTag ("Player")) {
 			SceneManager.LoadScene (2);
 

@@ -8,7 +8,7 @@ public class HealthRegen : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") {
-			other.GetComponent<Rigidbody> ().AddForce (other.transform.forward * speedBoost, ForceMode.Impulse);
+			other.GetComponent<Rigidbody> ().AddForce (other.transform.forward * speedBoost, ForceMode.Impulse); //Adds force to the player object 
 		}
 	}
 }
